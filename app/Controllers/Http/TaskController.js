@@ -18,7 +18,7 @@ class TaskController {
       'file_id'
     ])
 
-    return Task.create({ ...data, project_id: params.project_id })
+    return Task.create({ ...data, project_id: params.projects_id })
   }
 
   async show ({ params }) {
@@ -26,7 +26,7 @@ class TaskController {
   }
 
   async update ({ params, request }) {
-    const task = Task.findOrFail(params.id)
+    const task = await Task.findOrFail(params.id)
     const data = request.only([
       'user_id',
       'title',

@@ -3,8 +3,9 @@
 const Project = use('App/Models/Project')
 
 class ProjectController {
-  async index () {
-    return Project.query().with('user').fetch()
+  async index ({ request }) {
+    const { page } = request.get()
+    return Project.query().with('user').paginate(page)
   }
 
   async store ({ request, auth }) {
